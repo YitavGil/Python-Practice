@@ -19,15 +19,27 @@ operations = {
   "/": divide
 }
 
-num1 = int(input("What is the first number? "))
-num2 = int(input("What is the second number? "))
+def calculator():
+  num1 = float(input("What is the first number? "))
+  
+  
+  for symbol in operations:
+    print(symbol)
+  should_continue = True
+  
+  while should_continue:
+    num2 = float(input("What is the next number? "))
+    operation_symbol = input("Choose an operation \n")
+    calculation_function = operations[operation_symbol]
+    answer = calculation_function(num1, num2)
+  
+  print(f"{num1} {operation_symbol} {num2} is equal to {answer}")
+  
+  user_coninue = input("Type 'y' to continue with {amswer} or pass 'n' to restart")
+  if user_coninue == 'y':
+    num1 = answer
+  else: 
+    should_continue = False
+    calculator()
 
-for symbol in operations:
-  print(symbol)
-
-operation_symbol = input("Choose a symbol from the list \n")
-
-calculation_function = operations[operation_symbol]
-answer = calculation_function(num1, num2)
-
-print(f"{num1} {operation_symbol} {num2} is equal to {answer}")
+calculator()
